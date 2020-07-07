@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-class Ingredient extends React.Component{
+class Ingredient extends Component{
 
     state = {
         ingredient: []
@@ -10,8 +10,9 @@ class Ingredient extends React.Component{
         this.fetchIngredient()
     }
 
-    fetchIngredient = (id) => {
-        fetch(`http://localhost:3000/api/v1/key_ingredients/${id}`)
+    fetchIngredient = () => {
+        const url = this.props.location.pathname
+        fetch(`http://localhost:3000/api/v1${url}`)
         .then(resp => resp.json())
         .then(data => {
             this.setState({
@@ -22,16 +23,20 @@ class Ingredient extends React.Component{
 
     render(){
         console.log(this.props)
+        // @ts-ignore
+        const {id, name, properties, description, studies} = this.state.ingredient
         return (
-            <div>
-                {/* <div className="image-wrapper" >
-                    <img className="product-shot-img" src={} alt={}/>
-                </div> */}
-            {/* <h3>{this.props.ingredient.name}</h3>
-            <p>{this.props.ingredient.description}</p>
-            <h3>Properties</h3>
-            <p>{this.props.ingredient.properties}</p> */}
-        </div>
+               <div className='ingredient-details'> 
+                {/* <img src={img_url} width='300' height='300' alt={name}/> */}
+                    <h3><strong>{name}</strong></h3>
+                    <p><strong>Description</strong></p>
+                    <span>{description}</span>
+                    <p><strong>Properties</strong></p>
+                    <span>{properties}</span>
+                    <p><strong>Sources</strong></p>
+                    {studies && studies.map(study => {return <div key={study.id}>{study.source}</div>})}
+
+                </div>
         )
     }
 }

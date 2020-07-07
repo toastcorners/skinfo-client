@@ -1,0 +1,12 @@
+.lp-logo-box {
+    align-content: center;
+    background-size: cover;
+    box-shadow: 
+    inset 0 0 100vw 100vw rgba(0,0,0,0.3),0 16px 8px -8px rgba(0, 0, 0, 0.4);
+    max-width: 100vw;
+    height: 500vh;
+    padding: 0 0 32px;
+    display: flex;
+    position: relative;
+    overflow-x: hidden;
+}

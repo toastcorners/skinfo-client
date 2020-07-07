@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css';
 import ProductClick from './ProductClick'
-import Ingredient from './Ingredient'
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class Product extends Component {
 
@@ -65,26 +64,24 @@ class Product extends Component {
       }
     
     render(){
+        // let history = useHistory()
+        const { id, brand, name, img_url, likes} = this.props
         return (
            
             <Router>
                 <div className='product-div'>
                     <div className='image-wrapper'>
-                        <img className="product-shot-img" src={this.props.img_url} alt={this.props.name}/>
+                        <img className="product-shot-img" src={img_url} alt={this.props.name}/>
                         </div>
                     <div className='info-div'>
-                        <h3>{this.props.brand}</h3>
-                        <p><Link to='/productclick' onClick={()=>this.setCurrentProduct}>{this.props.name}</Link></p>
-                        <span>{this.props.likes} likes | {this.state.isLiked === false ? <button onClick={this.handleLike}> &hearts; like </button> : 
+                        <h3>{brand}</h3>
+                        <p><Link to={`/products/${id}`}>{name}</Link></p>
+                        {/* <button onClick={() => history.push(`/products/${id}`)}>view</button> */}
+                        <span>{likes} likes | {this.state.isLiked === false ? <button onClick={this.handleLike}> &hearts; like </button> : 
                         <button onClick={this.handleLike}> &hearts; liked </button>}
                         </span>
                     </div> 
-
-                <div className='ingredient-div'>
-                {/* {this.props.key_ingredients.map(ingredient => <Ingredient key={ingredient.id} {...ingredient}/>)} */}
-                </div>
-                
-                {/* <Ingredient /> */}
+                    <Route path={`/products/${id}`} components={ProductClick}/>
                 </div>
             </Router>
         )

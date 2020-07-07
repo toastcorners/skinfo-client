@@ -39,7 +39,7 @@
 .app-container {
   display: flex;
   flex-direction: row;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .logo-div{
@@ -49,17 +49,18 @@
 
 .filter-div {
   min-height: 100vh;
-  min-width: 20em;
+  min-width: 30%;
   width: 30%;
   padding: 1;
-  position: relative;
 }
+
 .main-div {
   background: white;
   max-width: 30em;
   margin: auto;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 .filter-box{
 width: 60%;
@@ -78,7 +79,7 @@ align-content: center;
 height: 200px;
 width: 200px;
 justify-content: center;
-position: relative;
+position: absolute;
 display: flex;
 flex-direction: column;
 overflow: hidden;
@@ -88,6 +89,12 @@ margin: 1rem;
 
 .product-shot-img {
 flex: 1;
+
+}
+
+a {
+  color: rgb(199, 115, 109);
+  text-decoration: none;
 }
 
 /* .product-div {

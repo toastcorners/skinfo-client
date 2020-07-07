@@ -2,7 +2,7 @@ import React, { Component }from 'react';
 import './Home.css';
 import Main from './containers/Main';
 import Filters from './containers/Filters';
-import Checkbox from 'react-simple-checkbox'
+import filter from './filter.png'
 
 const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Blemishes", "Enlarged Pores", "Dark Spots", "Uneven Texture", "Anti-aging", "Loss of Firmness"]
 // const PRODUCTS = ["Cleanser", "Toner", "Moisturizer", "Mask", "Peel", "Serum"]
@@ -111,7 +111,7 @@ filterConcerns = () => {
         <div className='app-container'>
           <div className='filter-div'>
             <div className='filter-box'>
-                  <h3>Filter By Skin Concern</h3>
+                  <img src={filter} alt='Filter By Skin Concern' />
                   <form>
                     {this.createCheckboxes()}
                   </form>
