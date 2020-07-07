@@ -1,0 +1,47 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .filter-div {
+    min-height: 100vh;
+    min-width: 12em;
+    width: 30%;
+    padding: 1;
+    background: #dbdfe5;
+    position: fixed;
+  }
+  .main-div {
+    background: white;
+    max-width: 30em;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+  }
+  .filter-box{
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+  }
+  
+  .image-wrapper {
+  height: 200px;
+  width: 200px;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  }
+  
+  .image-wrapper > .product-shot-img {
+    flex: 1;
+    height: 100%;
+  }
+  
+  .product-div {
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+  } 
