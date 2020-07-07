@@ -6,14 +6,17 @@ import Home from './Home';
 import LandingPage from './LandingPage'
 import ProductClick from './components/ProductClick';
 import Ingredient from './components/Ingredient';
-
+import logo from './skinfologo.png'
 
 
 function App () {
+
+
  
   return (
   <Router>
         <div className='app-container'>
+          <img className='logo' src={logo} alt='skinfo' />
         </div>
         <Switch>
           <Route exact path="/key_ingredients/:id" component={withRouter(Ingredient)}/>

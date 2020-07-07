@@ -34,13 +34,12 @@ class Product extends Component {
         })
     }
 
-    handleLike = (e) => {
-        e.preventDefault()
-        this.setState(prevState => ({
-            isLiked: !prevState.isLiked
-        }))
+    handleLike = () => {
+        this.setState((currentState => ({
+            isLiked: !currentState.isLiked
+        })))
          this.addLike()
-         this.fetchProducts()
+         console.log(this.state.isLiked)
     }
 
     fetchIngredient = (id) => {
@@ -71,18 +70,17 @@ class Product extends Component {
             <Router>
                 <div className='product-div'>
                     <div className='image-wrapper'>
-                        <img className="product-shot-img" src={img_url} alt={this.props.name}/>
+                        <img className="product-shot-img" src={img_url} alt={name}/>
                         </div>
                     <div className='info-div'>
-                        <h3>{brand}</h3>
-                        <p><Link to={`/products/${id}`}>{name}</Link></p>
-                        {/* <button onClick={() => history.push(`/products/${id}`)}>view</button> */}
+                        <span><strong>{brand}</strong></span>
+                        <span><Link to={`/products/${id}`}>{name}</Link></span>
                         <span>{likes} likes | {this.state.isLiked === false ? <button onClick={this.handleLike}> &hearts; like </button> : 
                         <button onClick={this.handleLike}> &hearts; liked </button>}
                         </span>
                     </div> 
                     <Route path={`/products/${id}`} components={ProductClick}/>
-                </div>
+                    </div>
             </Router>
         )
     }

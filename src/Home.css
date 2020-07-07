@@ -1,16 +1,17 @@
-.app-container {
+/* .app-container {
     display: flex;
     flex-direction: row;
     font-family: 'Playfair Display', serif;
-  }
+  } */
   
   .filter-div {
     min-height: 100vh;
     min-width: 12em;
     width: 30%;
     padding: 1;
-    background: #dbdfe5;
+    background:#DCD4D1;
     position: fixed;
+    color: #251C1A;
   }
   .main-div {
     background: white;

@@ -1,7 +1,7 @@
 import React from 'react'
 import Product from '../components/Product'
 import Search from '../components/Search'
-import '../Main.css'
+import '../App'
 
 class Main extends React.Component {
 

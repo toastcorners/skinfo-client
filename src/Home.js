@@ -2,7 +2,7 @@ import React, { Component }from 'react';
 import './Home.css';
 import Main from './containers/Main';
 import Filters from './containers/Filters';
-import filter from './filter.png'
+import filter from './resizedfilter.png'
 
 const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Blemishes", "Enlarged Pores", "Dark Spots", "Uneven Texture", "Anti-aging", "Loss of Firmness"]
 // const PRODUCTS = ["Cleanser", "Toner", "Moisturizer", "Mask", "Peel", "Serum"]
@@ -83,8 +83,8 @@ handleCheckboxChange = (e) => {
 
 
 
-handleCheckboxFilter= (e) => {
-    e.preventDefault()
+handleCheckboxFilter= () => {
+    // e.preventDefault()
     Object.keys(this.state.checkboxes)
     .filter(checkbox => this.state.checkboxes[checkbox])
 }
@@ -102,7 +102,7 @@ filterConcerns = () => {
     .filter(checkbox => this.state.checkboxes[checkbox])
     const products = this.state.products
     const matchingProducts = products.filter(prod => prod.benefits.includes(checkedConcerns[0]))
-    return matchingProducts
+    console.log(matchingProducts)
   }
 
  
@@ -111,8 +111,8 @@ filterConcerns = () => {
         <div className='app-container'>
           <div className='filter-div'>
             <div className='filter-box'>
-                  <img src={filter} alt='Filter By Skin Concern' />
-                  <form>
+                  <img className='filter-img' src={filter} alt='Filter By Skin Concern' />
+                  <form onChange={()=>this.handleCheckboxChange && this.handleCheckboxFilter()}>
                     {this.createCheckboxes()}
                   </form>
 
