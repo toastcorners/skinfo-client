@@ -2,29 +2,32 @@ import React, { Component }from 'react';
 import './Home.css';
 import Main from './containers/Main';
 import Filters from './containers/Filters';
-import filter from './resizedfilter.png'
+import styled from 'styled-components'
 
-const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Blemishes", "Enlarged Pores", "Dark Spots", "Uneven Texture", "Anti-aging", "Loss of Firmness"]
+const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Loss of Firmness", "Uneven Texture", "Dark Spots", "Blemishes", "Anti-aging"]
 // const PRODUCTS = ["Cleanser", "Toner", "Moisturizer", "Mask", "Peel", "Serum"]
+
+
+const Homediv = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const Filterdiv = styled.div`
+    justify-content: center;
+    width: 30%;
+    background-color: lightgray;
+    
+`
+const Maindiv = styled.div`
+   flex: 1;
+`
 
 class Home extends Component {
 
   state = {
     products: [],
-    checkboxes: OPTIONS.reduce(
-      (options, option) => ({
-      ...options, 
-      [option]:false
-          }),
-        {}
-      ),
-      // productboxes: PRODUCTS.reduce(
-      //   (products, product) => ({
-      //   ...products, 
-      //   [product]:false
-      //       }),
-      //     {}
-      //   ),
+    filtered: [],
+    search: []
     }
 
   componentDidMount(){
@@ -41,88 +44,49 @@ class Home extends Component {
     })
   }
 
-createCheckbox = (option) => (
-    <Filters
-        label={option}
-        isSelected={this.state.checkboxes[option]}
-        onSelectionChange={this.handleCheckboxChange}
-        key={option}
-        />
-)
-
-// createProductCheckbox = (product) => (
-//   <Filters
-//       label={product}
-//       isSelected={this.state.productboxes[product]}
-//       onSelectionChange={this.handleProductboxChange}
-//       key={product}
-//       />
-// )
-createCheckboxes = () => OPTIONS.map(this.createCheckbox)
-// createProductboxes = () => PRODUCTS.map(this.createProductCheckbox)
-
-handleCheckboxChange = (e) => {
-    const { name } = e.target
-    this.setState(prevState => ({
-        checkboxes: {
-            ...prevState.checkboxes,
-            [name]: !prevState.checkboxes[name]
-        }
-    }))
-}
-
-// handleProductboxChange = (e) => {
-//   const { name } = e.target
-//   this.setState(prevState => ({
-//       productboxes: {
-//           ...prevState.productboxes,
-//           [name]: !prevState.productboxes[name]
-//       }
-//   }))
-// }
-
-
-
-handleCheckboxFilter= () => {
-    // e.preventDefault()
-    Object.keys(this.state.checkboxes)
-    .filter(checkbox => this.state.checkboxes[checkbox])
-}
-
-// handleProductboxFilter= (e) => {
-//   e.preventDefault()
-//   Object.keys(this.state.productboxes)
-//   .filter(checkbox => this.state.productboxes[checkbox])
-// }
-
-
-
-filterConcerns = () => {
-    const checkedConcerns = Object.keys(this.state.checkboxes)
-    .filter(checkbox => this.state.checkboxes[checkbox])
+filterConcerns = (e) => {
+  console.log(e.target.className)
+  const clicked = parseInt(e.target.className)
     const products = this.state.products
-    const matchingProducts = products.filter(prod => prod.benefits.includes(checkedConcerns[0]))
+    const matchingProducts = products.filter(product => product.benefits.includes(OPTIONS[clicked]))
     console.log(matchingProducts)
+    this.setState({
+      filtered: matchingProducts
+    })
+  return matchingProducts
   }
+
+  addLike = (likes, id) => {
+    fetch(`http://localhost:3000/api/v1/products/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        likes: likes + 1
+      })
+    })
+    .then(this.fetchProducts)
+}
 
  
   render () {
       return (
-        <div className='app-container'>
-          <div className='filter-div'>
-            <div className='filter-box'>
-                  <img className='filter-img' src={filter} alt='Filter By Skin Concern' />
-                  <form onChange={()=>this.handleCheckboxChange && this.handleCheckboxFilter()}>
-                    {this.createCheckboxes()}
-                  </form>
-
-            </div>
-          </div>
-            <div className='main-div'>
-            <Main 
-              products={this.state.products}/>
-            </div>
-      </div>
+          <Homediv className='home-container'>
+            <Filterdiv>
+              <Filters 
+              filter={this.filterConcerns}
+              />
+              </Filterdiv>
+            <Maindiv>
+              <Main 
+              products={this.state.products}
+              addLike={this.addLike}
+              filtered={this.state.filterConcerns}
+              />
+              </Maindiv>
+            </Homediv>
       )
     }
   }

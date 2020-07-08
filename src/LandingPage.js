@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './skinfo-lp.png'
 import { Switch, Link, Route} from 'react-router-dom'
 import Home from './Home';
+import './LandingPage.css'
 
 class LandingPage extends Component {
 

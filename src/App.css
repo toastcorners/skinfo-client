@@ -38,58 +38,58 @@
 } */
 
 
-.app-container {
+/* .app-container {
   display: flex;
   flex-direction: row;
   font-family: 'Raleway', sans-serif;
   position: relative;
 
-}
+} */
 
- .logo {
+ /* .logo {
   object-fit: cover;
   width: 320px;
   height: 180px;
   overflow: scroll;
   position: relative;
-  left: -10%;
-} 
+  align-content: center;
+}  */
 
 
-.main-div {
+/* .main-div {
   background: white;
   justify-content: right;
   text-align: center;
   position: relative;
-  width: 80vw;
+  width: 70vw;
   /* margin-right: 60px; */
-  left: 18%;
-  font-size: medium;
+  /* left: 18%;
+  font-size: medium; */
   /* padding: 0px 10px; */
-}
-.filter-box{
+/* }  */
+/* .filter-box{
 /* width: 60%;
 height: 60%; */
-position: relative;
+/* position: relative;
 left: 0%;
-}
+}  */
 
-.filter-img{
-  left: -55%;
+/* .filter-img{
   position: relative;
   overflow: hidden;
-}
+  left: -10%;
+} */
 
-.product-div {
+/* .product-div {
 display: flex;
 flex-wrap: nowrap;
 position: relative;
 text-align: center;
 font-family: 'Raleway', sans-serif;
 /* overflow: hidden; */
-align-content: center;
-}
-.image-wrapper {
+/* align-content: center;
+} */ 
+/* .image-wrapper {
 height: 600px;
 width: 800px;
 justify-content: center;
@@ -98,23 +98,56 @@ display: flex;
 flex-direction: column;
 overflow: scroll;
 /* text-align: center; */
-margin: 1rem;
+/* margin: 1rem;
 }
 
 .product-shot-img {
 flex: 1;
 
-}
+} */ 
 
 a {
   color: rgb(199, 115, 109);
   text-decoration: none;
 }
-.info-div {
+/* .info-div {
   background-color: white;
   border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   overflow: scroll;
+} */
+
+.container {
+  display: grid;
+  width: 750px;
+  height: 600px;
+  grid-template-columns: 200px 1fr 1fr;
+  grid-template-rows: 80px 1fr 1fr 100px;
+  grid-gap: 1rem;
+  grid-template-areas:
+      "header header header"
+      "sidebar content-1 content-1"
+      "sidebar content-2 content-3"
+      "footer footer footer";
 }
 
+.app-container {
+  grid-area: header;
+}
+
+.filterdiv {
+  grid-area: sidebar;
+}
+
+.maindiv {
+  grid-area: content-1;
+}
+
+.maindiv {
+  grid-area: content-2;
+}
+
+.maindiv {
+  grid-area: content-3;
+}

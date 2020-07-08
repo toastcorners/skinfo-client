@@ -3,14 +3,14 @@
     flex-direction: row;
     font-family: 'Playfair Display', serif;
   } */
-  
-  .filter-div {
+
+  /* .filter-div {
     min-height: 100vh;
     min-width: 12em;
     width: 30%;
     padding: 1;
     background:#DCD4D1;
-    position: fixed;
+    position: sticky;
     color: #251C1A;
   }
   .main-div {
@@ -19,11 +19,14 @@
     margin: auto;
     justify-content: center;
     text-align: center;
+    display: flexbox;
   }
+
   .filter-box{
   width: 60%;
-  height: 60%;
   margin: 0 auto;
+  text-align: left;
+  left: -18%;
   }
   
   .image-wrapper {
@@ -32,7 +35,7 @@
   justify-content: center;
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   overflow: hidden;
   }
   
@@ -45,4 +48,7 @@
     justify-content: center;
     text-align: center;
     align-content: center;
-  } 
+
+  }  */
+
+  
