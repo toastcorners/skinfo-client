@@ -118,36 +118,4 @@ a {
   overflow: scroll;
 } */
 
-.container {
-  display: grid;
-  width: 750px;
-  height: 600px;
-  grid-template-columns: 200px 1fr 1fr;
-  grid-template-rows: 80px 1fr 1fr 100px;
-  grid-gap: 1rem;
-  grid-template-areas:
-      "header header header"
-      "sidebar content-1 content-1"
-      "sidebar content-2 content-3"
-      "footer footer footer";
-}
 
-.app-container {
-  grid-area: header;
-}
-
-.filterdiv {
-  grid-area: sidebar;
-}
-
-.maindiv {
-  grid-area: content-1;
-}
-
-.maindiv {
-  grid-area: content-2;
-}
-
-.maindiv {
-  grid-area: content-3;
-}

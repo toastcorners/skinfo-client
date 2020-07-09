@@ -49,7 +49,7 @@ class Ingredient extends Component{
     render(){
         console.log(this.props)
         // @ts-ignore
-        const {id, name, properties, description, studies} = this.state.ingredient
+        const {id, name, properties, description, studies, products} = this.state.ingredient
         return (
                <Details className='ingredient-details'> 
                 {/* <img src={img_url} width='300' height='300' alt={name}/> */}
@@ -60,7 +60,6 @@ class Ingredient extends Component{
                     <span>{properties}</span>
                     <p><strong>Sources</strong></p>
                     {studies && studies.map(study => {return <StudyLinks key={study.id}>{study.source}</StudyLinks>})}
-
                 </Details>
         )
     }

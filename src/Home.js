@@ -3,18 +3,38 @@ import './Home.css';
 import Main from './containers/Main';
 import Filters from './containers/Filters';
 import styled from 'styled-components'
+import logo from '../src/images/app-logo.png'
+import Search from './components/Search';
 
-const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Loss of Firmness", "Uneven Texture", "Dark Spots", "Blemishes", "Anti-aging"]
+const OPTIONS = ["Fine Lines and Wrinkles", "Dryness", "Loss of Firmness", "Uneven Texture", "Dark Spots", "Blemishes", "Anti-aging", "Enlarged Pores"]
 // const PRODUCTS = ["Cleanser", "Toner", "Moisturizer", "Mask", "Peel", "Serum"]
 
+const LogoDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 980px;
+  height: 72px;
+  padding: 16px 0px 2px;
+`
+
+const Logo = styled.div`
+  /* display: flex; */
+ justify-content: center; 
+  /* position: absolute;  */
+  display: block;
+  transform: translateY(0%);
+  transform: translateX(180%);
+`
 
 const Homediv = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    border-width: 0px;
 `
 const Filterdiv = styled.div`
     justify-content: center;
-    width: 30%;
+    width: 20%;
     background-color: lightgray;
     
 `
@@ -27,7 +47,7 @@ class Home extends Component {
   state = {
     products: [],
     filtered: [],
-    search: []
+    search: ''
     }
 
   componentDidMount(){
@@ -38,7 +58,7 @@ class Home extends Component {
     fetch('http://localhost:3000/api/v1/products')
     .then(resp => resp.json())
     .then(data => {
-      this.setState({
+      this.setState({...this.state,
         products: data
       })
     })
@@ -70,9 +90,51 @@ filterConcerns = (e) => {
     .then(this.fetchProducts)
 }
 
+addComment = (name, details, id) => {
+  fetch(`http://localhost:3000/api/v1/products/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      details: details,
+      id: id
+    })
+  })
+  .then(this.fetchProducts)
+}
+
+searchProducts = (e) => {
+  this.setState({...this.state,
+    search: e.target.value
+  })
+}
+
+filterSearchedProducts = (e) => {
+  const products = this.state.products
+  console.log(this.state.search)
+  const filtered = products.filter(product => product.name.toLowerCase().includes(this.state.search) || product.brand.toLowerCase().includes(this.state.search))
+  this.setState({
+    ...this.state, filtered: filtered
+  })
+}
+
  
   render () {
       return (
+        <div>
+          <LogoDiv>
+        <Logo>
+        <img src={logo} alt='logo'></img>
+        </Logo>
+           <Search 
+              filter={this.filterSearchedProducts}
+              searchProducts={this.searchProducts}
+              KeyWord={this.state.search}           
+          />
+        </LogoDiv>
           <Homediv className='home-container'>
             <Filterdiv>
               <Filters 
@@ -81,12 +143,15 @@ filterConcerns = (e) => {
               </Filterdiv>
             <Maindiv>
               <Main 
+              filtered={this.state.filtered}
               products={this.state.products}
               addLike={this.addLike}
-              filtered={this.state.filterConcerns}
+              addComment={this.addComment}
               />
               </Maindiv>
             </Homediv>
+            </div>
+          
       )
     }
   }

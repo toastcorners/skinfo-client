@@ -1,6 +1,6 @@
 import React from 'react'
 import Ingredient from './Ingredient'
-import { BrowserRouter as Router, Route, Link, withRouter} from 'react-router-dom'
+import { BrowserRouter as Route, Link, withRouter} from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -19,6 +19,7 @@ const Description = styled.p`
     display: flex;
     justify-content: center;
     margin: 20px;
+    padding: 5px
 `
 const Skinconcerns = styled.p`
     display: flex;
@@ -40,7 +41,11 @@ const Photo = styled.div`
     display: flex;
     justify-content: center;
     margin: 20px;
-    box-shadow: 0 0.5rem 1.5rem #AF9488;
+    /* box-shadow: 0 0.5rem 1.5rem #AF9488; */
+    /* filter: drop-shadow(0 0.5rem 1.5rem #AF9488); */
+    animation: fadeIn ease 10s;
+    -webkit-animation: fadeIn ease 10s;
+
 `
 
 
@@ -70,8 +75,6 @@ class ProductClick extends React.Component{
 
     render(){
         const { id, brand, name, description, benefits, key_ingredients, img_url} = this.state.productinfo
-    
-        console.log(this.props.location.pathname)
         return (
                 <div className='product-details'> 
                     <Photo className='product-img'> 

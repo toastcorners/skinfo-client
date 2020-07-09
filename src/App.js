@@ -11,15 +11,6 @@ import Ingredient from './components/Ingredient';
 
 function App () {
 
-  // const Appcontainer = styled.div`
-  //   display: flex;
-  //   grid-template-columns: 200px 1fr;
-  //   grid-gap: 1rem;
-  //   grid-template-areas:
-  //   "header header"
-  //   "sidebar main"
-  //   "sidebar main"; 
-
   return (
   <Router>
         <Switch>
