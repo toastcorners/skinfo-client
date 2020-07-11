@@ -2,7 +2,26 @@ import React from 'react'
 import Ingredient from './Ingredient'
 import { BrowserRouter as Route, Link, withRouter} from 'react-router-dom'
 import styled from 'styled-components'
+import logo from '../../src/images/app-logo.png'
 
+
+const LogoDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 980px;
+  height: 72px;
+  padding: 16px 0px 2px;
+`
+
+const Logo = styled.div`
+  /* display: flex; */
+align-content: center;
+ justify-content: center; 
+  /* position: absolute;  */
+  display: block;
+ /* transform: translateY(0%); */
+ transform: translateX(100%);    
+`
 
 const Brand = styled.span`
     color: #d49ba8;
@@ -19,7 +38,7 @@ const Description = styled.p`
     display: flex;
     justify-content: center;
     margin: 20px;
-    padding: 5px
+    padding: 5px;
 `
 const Skinconcerns = styled.p`
     display: flex;
@@ -76,10 +95,17 @@ class ProductClick extends React.Component{
     render(){
         const { id, brand, name, description, benefits, key_ingredients, img_url} = this.state.productinfo
         return (
+            <div>
+            <LogoDiv>
+            <Logo>
+            <img src={logo} alt='logo'></img>
+            </Logo>
+            </LogoDiv>
+            <div className='product-show'>
+            <Photo className='product-img'> 
+            <img src={img_url} className='product-image' width='300' height='300' alt={name}/>
+            </Photo>
                 <div className='product-details'> 
-                    <Photo className='product-img'> 
-                    <img src={img_url} className='product-image' width='300' height='300' alt={name}/>
-                    </Photo>
                     <br />
                     <Brand><strong>{brand}</strong></Brand>
                     <br />
@@ -89,6 +115,8 @@ class ProductClick extends React.Component{
                     <KeyIngredients><strong>Key Ingredients:</strong></KeyIngredients>
                     {key_ingredients && key_ingredients.map(ingredient => {return <Ingredients key={ingredient.id}><Link to={`/key_ingredients/${ingredient.id}`}>{ingredient.name}</Link></Ingredients>})}
                     <Route path={`/key_ingredients/${id}`} component={withRouter(Ingredient)}/> 
+                </div>
+                </div>
                 </div>
         )
     }

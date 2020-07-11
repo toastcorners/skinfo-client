@@ -11,9 +11,10 @@ justify-content: center;
 
 `
 
-const SkinTip = styled.div`
-justify-content: center;
-`
+// const SkinTip = styled.div`
+// justify-content: center;
+// translate: transformX(20%);
+// `
 
 const Products = styled.div`
 justify-content: center;
@@ -49,12 +50,11 @@ class Main extends React.Component {
         return(
             <Wrapper>
                     <br />
-                    <SkinTip>
+                    {/* <SkinTip>
                     <img src={skintip} width='500' height='300' alt='stay hydrated'/>
-                    </SkinTip>
+                    </SkinTip> */}
                     <br />
                     <br />
-                    {this.props.filtered !== [] ? 
                     <Products>
                             {this.props.filtered.map(product => 
                                 <Product 
@@ -62,18 +62,9 @@ class Main extends React.Component {
                                     addComment={this.props.addComment}
                                     key={product.id} {...product}/>)}
                     </Products>
-                                : 
-                                <Products>
-                                    {this.props.products.map(product => 
-                                        <Product 
-                                            addLike={this.props.addLike}
-                                            addComment={this.props.addComment}
-                                            key={product.id} {...product}/>)}
-                                </Products> 
-    }
             </Wrapper>
     
-        )
-                }
+            )
+        }
     }
 export default Main

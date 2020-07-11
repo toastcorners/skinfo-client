@@ -36,6 +36,9 @@ const Filterdiv = styled.div`
     justify-content: center;
     width: 20%;
     background-color: lightgray;
+    & img {
+      cursor: pointer;
+    }
     
 `
 const Maindiv = styled.div`
@@ -58,14 +61,14 @@ class Home extends Component {
     fetch('http://localhost:3000/api/v1/products')
     .then(resp => resp.json())
     .then(data => {
-      this.setState({...this.state,
-        products: data
+      this.setState({
+        products: data,
+        filtered: data
       })
     })
   }
 
 filterConcerns = (e) => {
-  console.log(e.target.className)
   const clicked = parseInt(e.target.className)
     const products = this.state.products
     const matchingProducts = products.filter(product => product.benefits.includes(OPTIONS[clicked]))
@@ -112,17 +115,19 @@ searchProducts = (e) => {
   })
 }
 
-filterSearchedProducts = (e) => {
-  const products = this.state.products
-  console.log(this.state.search)
-  const filtered = products.filter(product => product.name.toLowerCase().includes(this.state.search) || product.brand.toLowerCase().includes(this.state.search))
-  this.setState({
-    ...this.state, filtered: filtered
-  })
-}
+
 
  
   render () {
+    
+     const filterSearchedProducts = (e) => {
+      const products = this.state.products
+      console.log(this.state.search)
+      const filtered = products.filter(product => product.name.toLowerCase().includes(this.state.search) || product.brand.toLowerCase().includes(this.state.search))
+      this.setState({
+        ...this.state, filtered: filtered
+      })
+    }
       return (
         <div>
           <LogoDiv>
@@ -130,7 +135,7 @@ filterSearchedProducts = (e) => {
         <img src={logo} alt='logo'></img>
         </Logo>
            <Search 
-              filter={this.filterSearchedProducts}
+              filter={filterSearchedProducts}
               searchProducts={this.searchProducts}
               KeyWord={this.state.search}           
           />
@@ -144,7 +149,7 @@ filterSearchedProducts = (e) => {
             <Maindiv>
               <Main 
               filtered={this.state.filtered}
-              products={this.state.products}
+              // products={this.state.products}
               addLike={this.addLike}
               addComment={this.addComment}
               />

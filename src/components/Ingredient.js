@@ -9,21 +9,17 @@ const StudyLinks = styled.a`
 const Details = styled.div`
     margin: 20px;
     font-size: medium;
+    font-family: 'Raleway', sans-serif;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
 `
 
 const Name = styled.h3`
-    display: flex;
     justify-content: center;
-    margin: 20px;
 `
-
-const Description = styled.p`
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-`
-
-
 
 class Ingredient extends Component{
 

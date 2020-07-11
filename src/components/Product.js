@@ -47,6 +47,7 @@ const Name = styled.span`
     align-content: center;
     margin: 0px;
     position: relative;
+    justify-content: center;
 
 `
 const Likes = styled.span`
