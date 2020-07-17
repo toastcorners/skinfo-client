@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 skinfo
 
-*This repo contains the front end for skinfo. The front end to this repo can be found here: https://github.com/toastcorners/skinfo-api
+*This repo contains the front end for skinfo. The back end to this repo can be found here: https://github.com/toastcorners/skinfo-api
 
 skinfo is a simple web app for learning about popular skin care products and exploring the studies that support each claim. This project is a work in progress and consistently being added onto. Most of the product descriptions came from https://www.dermstore.com/. The database for this has been seeded. The front end uses javascript, react, styled-components, and css.
 
