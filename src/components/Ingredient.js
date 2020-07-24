@@ -17,6 +17,10 @@ const Details = styled.div`
     width: 800px;
 `
 
+const Description = styled.div`
+    align-content: center;
+`
+
 const Name = styled.h3`
     justify-content: center;
 `

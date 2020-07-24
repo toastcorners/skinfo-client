@@ -66,22 +66,6 @@ const LikeButton = styled.button`
 
 
 `
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Product extends Component {
 
     state = {

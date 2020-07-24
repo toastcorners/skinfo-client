@@ -24,28 +24,24 @@ align-content: center;
 `
 
 const Brand = styled.span`
-    color: #d49ba8;
-    font-size: 1.3rem;
+    color: black;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
 
 `
 const Name = styled.span`
     display: flex;
+    font-size: 1.3rem;
     justify-content: center;
-`
-const Description = styled.p`
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    padding: 5px;
+    color: #d49ba8;
 `
 const Skinconcerns = styled.p`
     display: flex;
     justify-content: center;
     margin: 20px;
 `
-const Ingredients = styled.li`
+const Ingredients = styled.span`
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -60,13 +56,19 @@ const Photo = styled.div`
     display: flex;
     justify-content: center;
     margin: 20px;
+    transform: translateY(-30%);  
+    mix-blend-mode: multiply;
     /* box-shadow: 0 0.5rem 1.5rem #AF9488; */
     /* filter: drop-shadow(0 0.5rem 1.5rem #AF9488); */
-    animation: fadeIn ease 10s;
-    -webkit-animation: fadeIn ease 10s;
+    /* animation: fadeIn ease 10s;
+    -webkit-animation: fadeIn ease 10s; */
 
 `
-
+const Likes = styled.span`
+/* transform: translateY(300%);  */
+transform: translateX(-400%); 
+text-align: center;
+`
 
 class ProductClick extends React.Component{
 
@@ -93,7 +95,7 @@ class ProductClick extends React.Component{
     }
 
     render(){
-        const { id, brand, name, description, benefits, key_ingredients, img_url} = this.state.productinfo
+        const { id, brand, name, description, benefits, key_ingredients, full_ingredients, img_url, likes} = this.state.productinfo
         return (
             <div>
             <LogoDiv>
@@ -105,13 +107,15 @@ class ProductClick extends React.Component{
             <Photo className='product-img'> 
             <img src={img_url} className='product-image' width='300' height='300' alt={name}/>
             </Photo>
+            <Likes> {likes} likes</Likes>
                 <div className='product-details'> 
                     <br />
                     <Brand><strong>{brand}</strong></Brand>
                     <br />
-                    <Name>{name}</Name>
-                    <Description>{description}</Description>
-                    <Skinconcerns><strong>Skin Concerns:</strong> {benefits}</Skinconcerns>
+                    <Name><strong>{name}</strong></Name>
+                    <p><strong>What does it do? </strong>{description}</p>
+                    <p><strong>Ingredients: </strong>{full_ingredients}</p>
+                    <Skinconcerns><strong>Skin Concerns: </strong> {benefits}</Skinconcerns>
                     <KeyIngredients><strong>Key Ingredients:</strong></KeyIngredients>
                     {key_ingredients && key_ingredients.map(ingredient => {return <Ingredients key={ingredient.id}><Link to={`/key_ingredients/${ingredient.id}`}>{ingredient.name}</Link></Ingredients>})}
                     <Route path={`/key_ingredients/${id}`} component={withRouter(Ingredient)}/> 
